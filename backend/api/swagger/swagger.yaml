@@ -1,0 +1,342 @@
+swagger: "2.0"
+info: 
+  version: "1.0.0"
+  title: Toxic Raccoon API
+host: localhost:4000
+basePath: /api
+schemes:
+  - "https"
+  - "http"
+paths:
+  /api/COMPONENTS:
+    get:
+      tags:
+      - "Get Components"
+      description: Get all the components object
+      summary: Get components
+      parameters: []
+      operationId: GetComponents
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            type: "object"
+            additionalProperties:
+              type: "array"
+              items:
+                type: "object"
+                properties:
+                  COMPONENT:
+                    type: string
+                example:
+                    TYPE: AMD Ryzen 5 5600X
+                    PRICE: 125 520 Ft
+                    IMG: "https://p1.akcdn.net/full/744222552.amd-ryzen-5-5600x-6-core-3-7ghz-am..."
+                    SOCKET: "AM4"
+                    BASE_CLOCK: "3.7GHz"
+                    MAX_CLOCK: "4.6GHz"
+                    OVERCLOCK: true
+                    TDP: "65W"
+                    MAX_TEMP: "95°C"
+                    CORES: 6 
+                    THREADS: 12
+                    MEMORY_TYPE: "DDR4"
+                    MAX_MEMORY_SPEED: "3200MHz"
+                    MAX_MEMORY: "128Gb"
+                    MEMORY_CHANNELS: 2
+                    GAMING_RANGE: 3
+                    GAMING_SCORE: 166000
+
+  /api/CUSTOMBUILDS:
+    get:
+      tags:
+      - "Get builds"
+      description: Get all the custom builds list
+      summary: Get Custom Builds
+      parameters: []
+      operationId: GetCustombuilds
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+              type: "object"
+              example: 
+                COMPONENT_LIST: []
+                BUILD_NAME: "Supercool!"
+                USER_NAME: "Gergo Kocsis"
+                BUILD_PRICE: 534226
+                BUILD_ID: "663f718e-d663-438a-975d-d163519f504d"
+
+  /api/RACCOONBUILDS:
+    get:
+      tags:
+      - "Get builds"
+      description: Get all the raccoon builds list
+      summary: Get Raccoon Builds
+      parameters: []
+      operationId: GetRaccoonbuilds
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+              type: "object"
+              example: 
+                COMPONENT_LIST: []
+                BUILD_NAME: "The Coon."
+                USER_NAME: "Toxic Raccoon"
+                BUILD_PRICE: 556848
+                BUILD_ID: "f5ef6389-8a7e-476b-bf2b-c71a70ae0773"
+
+  /api/SAVEBUILD:
+    post:
+      tags:
+      - "Build save"
+      summary: "Add new build to the custom builds list"
+      description: ""
+      operationId: "AddCustomBuild"
+      consumes:
+      - "application/json"
+      - "application/xml"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Build object that needs to added to the custom build list"
+        required: true
+        schema:
+          $ref: "#/definitions/Build"
+      responses:
+        "405":
+          description: "Invalid input"
+  
+  /api/SAVERACCOONBUILD:
+    post:
+      tags:
+      - "Build save"
+      summary: "Add new build to the raccoon builds list"
+      description: ""
+      operationId: "AddRaccoonBuild"
+      consumes:
+      - "application/json"
+      - "application/xml"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Build object that needs to added to the raccoon build list (Admins only)"
+        required: true
+        schema:
+          $ref: "#/definitions/Build"
+      responses:
+        "405":
+          description: "Invalid input"
+          
+  /api/DELETEBUILD:
+    post:
+      tags:
+      - "Delete build"
+      summary: "Delete build that match the requested ID. valid jwt is required."
+      description: ""
+      operationId: "DeleteCustomBuild"
+      consumes:
+      - "application/json"
+      - "application/xml"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Object with a jwt and a build ID"
+        required: true
+        schema:
+          $ref: "#/definitions/Remove"
+      responses:
+        "405":
+          description: "Invalid input"
+          
+  /api/DELETERACCOONBUILD:
+    post:
+      tags:
+      - "Delete build"
+      summary: "Delete build that match the requested ID. valid jwt is required."
+      description: ""
+      operationId: "DeleteRaccoonBuild"
+      consumes:
+      - "application/json"
+      - "application/xml"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Object with a jwt and a build ID"
+        required: true
+        schema:
+          $ref: "#/definitions/Remove"
+      responses:
+        "405":
+          description: "Invalid input"
+          
+  /api/login:
+    post:
+      tags:
+      - "Google login"
+      summary: "Google OAuth"
+      description: ""
+      operationId: "GoogleLogin"
+      consumes:
+      - "application/json"
+      - "application/xml"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Google authcode"
+        required: true
+        schema:
+          $ref: "#/definitions/Authcode"
+      responses:
+        "405":
+          description: "Invalid input"
+          
+  /api/userToken:
+    get:
+      tags:
+      - "Google login"
+      summary: "Check that user has a valid jwt"
+      description: ""
+      operationId: "JwtValidate"
+      consumes:
+      - "application/json"
+      - "application/xml"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "header"
+        name: "jwt"
+        description: "JWT"
+        required: true
+        type: "string"
+      responses:
+        "405":
+          description: "Invalid input"
+          
+  /SENDMAIL:
+    post:
+      tags:
+      - "Email send"
+      summary: "Send mail with the ordering infos"
+      description: ""
+      operationId: "SendMail"
+      consumes:
+      - "application/json"
+      - "application/xml"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Order detailse, shipping & billing info"
+        required: true
+        schema:
+          $ref: "#/definitions/Email"
+      responses:
+        "405":
+          description: "Invalid input"
+  
+definitions:
+  
+  Build:
+    type: "object"
+    properties:
+      COMPONENT_LIST:
+        type: "array"
+        items:
+          type: "object"
+      BUILD_NAME:
+        type: "string"
+        example: "Supercool!"
+      USER_NAME:
+        type: "string"
+        example: "John Doe"
+      BUILD_PRIDE:
+        type: "integer"
+        example: "600000"
+      BUILD_ID: 
+        type: "string"
+        example: "663f718e-d663-438a-975d-d163519f504d"
+        
+  Remove:
+    type: "object"
+    properties:
+      JWT:
+        type: "string"
+        example: "jwt-token"
+      REMOVABLE_ID:
+        type: "string"
+        example: "663f718e-d663-438a-975d-d163519f504d"
+        
+  Authcode:
+    type: "object"
+    properties:
+      authCode:
+        type: "string"
+        example: "google auth code"
+        
+  Email:
+    type: "object"
+    properties:
+      bagTotalPrice: 
+        type: "string"
+        example: "800000"
+      currentBag:
+        type: "array"
+        items:
+          type: "object"
+          example: 
+            COMPONENT_LIST: []
+            BUILD_NAME: "The Coon."
+            USER_NAME: "Toxic Raccoon"
+            BUILD_PRICE: 556848
+            BUILD_ID: "f5ef6389-8a7e-476b-bf2b-c71a70ae0773"
+      shippingDetailes:
+        type: "object"
+        example: "address"
+      billingDetailes:
+        type: "object"
+        example: "address"
+      takeOverType:
+        type: "string"
+        example: "shipping"
+      paymentOption:
+        type: "string"
+        example: "in cash"
+      additionalInfo:
+        type: "string"
+        example: "house owner name"

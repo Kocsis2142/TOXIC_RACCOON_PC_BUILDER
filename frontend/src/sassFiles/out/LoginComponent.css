@@ -1,0 +1,35 @@
+body, html {
+  height: 99%;
+}
+
+.login-container, .registration-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  z-index: 2;
+  background-color: rgba(44, 44, 44, 0.5);
+}
+
+.login-container div, .registration-container div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-container div *, .registration-container div * {
+  margin: 16px;
+}
+
+.login-container div input, .registration-container div input {
+  width: 300px;
+  height: 30px;
+}
+
+.login-container div button, .registration-container div button {
+  font-size: 20px;
+}
