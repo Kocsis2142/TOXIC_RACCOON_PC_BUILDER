@@ -5,6 +5,42 @@ $background-color-content : rgb(59, 59, 59);
 $background-color-component-list : black;
 $background-color-component-row : rgba(167, 167, 167, 0.5);
 
+@keyframes translateY {
+    0% {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    80% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0px);
+    }
+  }
+
+@keyframes translateX {
+    0% {
+      opacity: 0;
+      transform: translateX(-40px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0px);
+    }
+  }
+
+@keyframes translateXR {
+    0% {
+      opacity: 0;
+      transform: translateX(40px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0px);
+    }
+  }
+
 
 * {
     box-sizing: border-box;
@@ -76,13 +112,21 @@ body {
         box-shadow: 1px 1px 15px #969696;
         border-bottom: 0.5px solid #969696;
         li {
+            transition: .4s linear;
             padding: 4px;
             border-radius: 2px;
+            button {
+                transition: .4s linear;
+            }
         }
         .menu-btn:hover {
-            background-color: #444444;
+            color: rgb(230, 230, 230);
+            text-shadow: 0 0 10px #fff,
+                 0 0 20px #fff, 
+                 0 0 30px #fff;
         }
         .bag-container {
+            animation: translateY 0.8s linear;
             position: absolute;
             margin-top: 22px;
             width: 20vw;
@@ -140,6 +184,7 @@ body {
     right: 15px;
 }
 .search-component {
+    animation: translateY .6s linear;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -168,6 +213,7 @@ body {
                 flex-wrap: wrap;
                 margin-bottom: 10px;
             .search-result-card {
+                animation: translateY .6s linear;
                 color: #272727;
                 background-color: white;
                 margin: 10px;
@@ -257,6 +303,7 @@ body {
                 .component-error-messages {
                     width: 100%;
                     div {
+                        animation: translateY .8s linear;
                         width: 100%;
                     }
                 }
@@ -264,6 +311,7 @@ body {
         }
 
         .component-list {
+            animation: translateX 0.8s linear;
             display: flex;
             background-color: #272727;
             box-shadow: 1px 1px 15px #969696;
@@ -331,6 +379,7 @@ body {
 
   .component-error-messages {
     div {
+        animation: translateY .8s linear;
         width: 100%;
         display: flex;
         flex-direction: column;
@@ -348,6 +397,7 @@ body {
     }
 
     .component-error-msg {
+        animation: translateY .8s linear;
         cursor: pointer;
         background-color: rgb(126, 0, 0);
         width: 100%;
@@ -356,6 +406,7 @@ body {
     }
 
     .component-warning-msg {
+        animation: translateY .8s linear;
         cursor: pointer;
         background-color: rgb(230, 230, 128);
         color: rgb(0, 0, 0);
@@ -383,6 +434,7 @@ body {
     .game-performance-card-container {
         margin-top: 10px;
         .game-performance-card {
+            animation: translateXR .8s linear;
             position: relative;
             display: flex;
             flex-direction: column;
@@ -429,6 +481,7 @@ body {
     background-color: #585858;
 }
 .hover-btn {
+    transition: .4s linear;
     padding: 4.8px;
     cursor: pointer;
 }
@@ -445,6 +498,7 @@ body {
 
 
 .build-card {
+    animation: translateX 0.8s linear;
     display: flex;
     justify-content: space-around;
     text-align: left;
@@ -569,13 +623,21 @@ body {
             z-index: 4;
             background-color: #2e2e2e;
             li {
+                transition: .4s linear;
                 padding: 4px;
                 border-radius: 2px;
+                button {
+                    transition: .4s linear;
+                }
             }
             .menu-btn:hover {
-                background-color: #444444;
+                color: rgb(230, 230, 230);
+                text-shadow: 0 0 10px #fff,
+                 0 0 20px #fff, 
+                 0 0 30px #fff;
             }
             .bag-container {
+                animation: translateY 0.8s linear;
                 position: absolute;
                 margin-top: 22px;
                 width: 300px;
@@ -614,6 +676,7 @@ body {
     }
 
     .search-component {
+        animation: translateY .6s linear;
         background-color: rgba(131, 131, 131, 0.945);
         position: absolute;
         top: 0;
@@ -632,6 +695,7 @@ body {
                     justify-content: space-around;
                     flex-wrap: wrap;
                 .search-result-card {
+                    animation: translateY .6s linear;
                     color: #272727;
                     background-color: white;
                     margin: 10px;
@@ -687,6 +751,7 @@ body {
         margin: 25px;
     .component-row-container {
         .component-list {
+            animation: translateX 0.8s linear;
             display: flex;
             background-color: #272727;
             box-shadow: 1px 1px 15px #969696;
@@ -818,13 +883,21 @@ body {
             z-index: 4;
             background-color: #2e2e2e;
             li {
+                transition: .4s linear;
                 padding: 4px;
                 border-radius: 2px;
+                button {
+                    transition: .4s linear;
+                }
             }
             .menu-btn:hover {
-                background-color: #444444;
+                color: rgb(230, 230, 230);
+                text-shadow: 0 0 10px #fff,
+                 0 0 20px #fff, 
+                 0 0 30px #fff;
             }
             .bag-container {
+                animation: translateY 0.8s linear;
                 position: absolute;
                 margin-top: 22px;
                 width: 285px;
@@ -869,6 +942,7 @@ body {
             width: 324px;
         .component-row-container {
             .component-list {
+                animation: translateX 0.8s linear;
                 display: flex;
                 flex-direction: column;
                 background-color: #272727;
